@@ -11,9 +11,8 @@ listener = sr.Recognizer()
 
 class Bot:
     def talk(self, message):
-        for voice in voices:
-            engine.say(message)
-            engine.runAndWait()
+        engine.say(message)
+        engine.runAndWait()
 
     def listen(self):
         try:
