@@ -3,9 +3,7 @@ import speech_recognition as sr
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-""" for index, voice in enumerate(voices, start=0):
-    print('Voz ', voice.id, ' index ', index) """
-
+engine.setProperty('voice', voices[20].id) #Spanish language setted in voice
 
 # Creating the listener
 listener = sr.Recognizer()
@@ -13,9 +11,9 @@ listener = sr.Recognizer()
 
 class Bot:
     def talk(self, message):
-        engine.setProperty('voice', voices[21].id)
-        engine.say(message)
-        engine.runAndWait()
+        for voice in voices:
+            engine.say(message)
+            engine.runAndWait()
 
     def listen(self):
         try:
@@ -24,7 +22,6 @@ class Bot:
                 voice = listener.listen(source)
                 # Use whisper API
                 rec = listener.recognize_whisper(voice)
-                print('Record is ==>  ', rec)
                 return rec
         except Exception as e:
             raise e    
