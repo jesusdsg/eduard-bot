@@ -18,6 +18,7 @@ class Bot:
         try:
             # Try to get the voice from the microphone: 
             with sr.Microphone() as source:
+                listener.adjust_for_ambient_noise(source)
                 voice = listener.listen(source)
                 # Use whisper API
                 rec = listener.recognize_whisper(voice)
