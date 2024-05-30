@@ -4,9 +4,9 @@ from bot import Bot
 
 bot = Bot()
 
-
-class Functions:
+class Detection:
     def detect_play(self, rec):
+        print('recording ', rec)
         if "reproduce" in rec:
             music_query = rec.replace("reproduce", '')
             bot.talk('Reproduciendo ' + music_query)
@@ -21,4 +21,9 @@ class Functions:
         if "salir" in rec:
             bot.talk('Fue un placer ayudarte, hasta otra')
             return True
-        return False    
+        return False
+
+class Duty(Detection):
+    def main_duty(self, rec):
+        self.detect_play(rec)
+        self.detect_time(rec)

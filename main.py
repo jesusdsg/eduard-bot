@@ -1,13 +1,14 @@
 import speech_recognition as sr
 from bot import Bot
-from functions import Functions
+from functions import Duty, Detection
 import pywhatkit as pwk
 import datetime
 
 exit_bot = False;
 welcome_message = False
 bot = Bot()
-functions = Functions()
+duty = Duty()
+detection = Detection()
 
 
 while not exit_bot:
@@ -17,6 +18,5 @@ while not exit_bot:
     else:
         bot.talk('¿Algo más en qué pueda ayudarte?')    
     rec = bot.listen()
-    functions.detect_play(rec)
-    functions.detect_time(rec)
-    exit_bot = functions.detect_exit(rec)
+    duty.main_duty(rec)
+    exit_bot = detection.detect_exit(rec)
